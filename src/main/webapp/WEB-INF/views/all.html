@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employees</title>
+</head>
+<style>
+    td {
+        border: 2px black solid;
+    }
+</style>
+<body>
+
+<table>
+    <thead>
+        <tr>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Department id</td>
+            <td>Job title</td>
+            <td>Gender</td>
+            <td>Date of birth</td>
+        </tr>
+    </thead>
+    <tbody>
+        <div th:each="person : ${people}">
+            <tr>
+                <td th:text="${person.getFirstName()}"></td>
+                <td><a th:href="@{/staff/{id}(id=${person.getEmployeeId()})}"
+                   th:text="${person.getLastName()}">user</a></td>
+                <td th:text="${person.getDepartmentId()}"></td>
+                <td th:text="${person.getJobTitle()}"></td>
+                <td th:text="${person.getGender()}"></td>
+                <td th:text="${person.getDateOfBirth()}"></td>
+                <td>
+                    <a th:href="@{/staff/{id}/edit(id=${person.getEmployeeId()})}">Edit</a>
+                </td>
+                <td>
+                    <form th:method="DELETE" th:action="@{/staff/{id}(id=${person.getEmployeeId()})}">
+                    <input type="submit" value="Delete">
+                </form></td>
+            </tr>
+        </div>
+    </tbody>
+</table>
+<br/>
+<hr/>
+
+<a th:href="@{/staff/new}">Add new employee</a>
+
+</body>
+</html>

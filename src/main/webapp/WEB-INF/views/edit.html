@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit employee</title>
+</head>
+<body>
+
+<form th:method="PATCH" th:action="@{/staff/{id}(id=${person.getEmployeeId()})}" th:object="${person}">
+    <label for="firstName">Enter first name</label>
+    <input type="text" th:field="*{firstName}" id="firstName">
+    <div style="color: red" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Error first name</div>
+    <br/>
+    <label for="lastName">Enter last name</label>
+    <input type="text" th:field="*{lastName}" id="lastName">
+    <div style="color: red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Error last name</div>
+    <br/>
+    <label for="departmentId">Enter department id</label>
+    <input type="text" th:field="*{departmentId}" id="departmentId">
+    <div style="color: red" th:if="${#fields.hasErrors('departmentId')}" th:errors="*{departmentId}">Error department id</div>
+    <br/>
+    <label for="jobTitle">Enter job title</label>
+    <input type="text" th:field="*{jobTitle}" id="jobTitle">
+    <div style="color: red" th:if="${#fields.hasErrors('jobTitle')}" th:errors="*{jobTitle}">Error job title</div>
+    <br/>
+    <label for="gender">Enter gender</label>
+    <select th:field="*{gender}" id="gender">
+        <option value="MALE">Male</option>
+        <option value="FEMALE">Female</option>
+    </select>
+    <label for="dateOfBirth">Enter date of birth</label>
+    <input type="date" th:field="*{dateOfBirth}" id="dateOfBirth">
+    <div style="color: red" th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}">Error date of birth</div>
+    <br/>
+    <input type="submit" value="Update!">
+</form>
+
+</body>
+</html>
